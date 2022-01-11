@@ -1,0 +1,71 @@
+# GET http://localhost:8000/api/v1 HTTP/1.1
+
+# Users Module
+# GET http://localhost:8000/api/v1/users HTTP/1.1 => get all users
+
+# POST http://localhost:8000/api/v1/users HTTP/1.1 => create new user
+# Content-Type: application/json
+
+# {
+#   "name":"Puimek"
+# }
+
+# GET http://localhost:8000/api/v1/users/1 HTTP/1.1 => get user by id
+
+# DELETE http://localhost:8000/api/v1/users/1 HTTP/1.1 => delete user by id
+
+# PUT http://localhost:8000/api/v1/users/1 HTTP/1.1 => update user by id
+# Content-Type: application/json
+
+# {
+#   "name" : "Chatkamon Ink Waruntorn"
+# }
+
+# Auth Module
+# POST http://localhost:8000/api/v1/auth/registration HTTP/1.1 => user registration
+# Content-Type: application/json
+
+# {
+#   "email" : "puimek@gmail.com",
+#   "name" : "Puimek Napasorn Weerathuvilai",
+#   "username" : "puimek123",
+#   "password" : "password123"
+# }
+
+# POST http://localhost:8000/api/v1/auth/login HTTP/1.1 => user login
+# Content-Type: application/json
+
+# {
+#   "email" : "puimek@gmail.com",
+#   "password" : "password123"
+# }
+
+# Profile Module
+# GET http://localhost:8000/api/v1/auth/profile HTTP/1.1 => get user profile by token
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJwdWltZWtAZ21haWwuY29tIiwidXNlcm5hbWUiOiJwdWltZWsxMjMiLCJwYXNzd29yZCI6IiQyYiQxNSQ1cmxyemtiZjh6LlhhLnRBeFFJQlJ1Ukk1RkpTWkpzbUlza1pmQ21OdFJLcnBNb1RNWW1jRyIsImlhdCI6MTYyNTY1OTk3N30.FC24vgbBIju7NEKNDDY1_5cBxKq6uKISppRSsSMVBuo
+
+# Todo Module
+# GET http://localhost:8000/api/v1/todos/ HTTP/1.1 => get todos
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJwdWltZWtAZ21haWwuY29tIiwidXNlcm5hbWUiOiJwdWltZWsxMjMiLCJwYXNzd29yZCI6IiQyYiQxNSQ1cmxyemtiZjh6LlhhLnRBeFFJQlJ1Ukk1RkpTWkpzbUlza1pmQ21OdFJLcnBNb1RNWW1jRyIsImlhdCI6MTYyNTY1OTk3N30.FC24vgbBIju7NEKNDDY1_5cBxKq6uKISppRSsSMVBuo
+
+# POST http://localhost:8000/api/v1/todos/create HTTP/1.1 => create new todo
+# Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJwdWltZWtAZ21haWwuY29tIiwidXNlcm5hbWUiOiJwdWltZWsxMjMiLCJwYXNzd29yZCI6IiQyYiQxNSQ1cmxyemtiZjh6LlhhLnRBeFFJQlJ1Ukk1RkpTWkpzbUlza1pmQ21OdFJLcnBNb1RNWW1jRyIsImlhdCI6MTYyNTY1OTk3N30.FC24vgbBIju7NEKNDDY1_5cBxKq6uKISppRSsSMVBuo
+
+# {
+#   "description" : "Test Description dari Puimek"
+# }
+
+# GET http://localhost:8000/api/v1/todos/4 HTTP/1.1 => get todos by todo id
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJwdWltZWtAZ21haWwuY29tIiwidXNlcm5hbWUiOiJwdWltZWsxMjMiLCJwYXNzd29yZCI6IiQyYiQxNSQ1cmxyemtiZjh6LlhhLnRBeFFJQlJ1Ukk1RkpTWkpzbUlza1pmQ21OdFJLcnBNb1RNWW1jRyIsImlhdCI6MTYyNTY1OTk3N30.FC24vgbBIju7NEKNDDY1_5cBxKq6uKISppRSsSMVBuo
+
+# PUT http://localhost:8000/api/v1/todos/4 HTTP/1.1
+# Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJwdWltZWtAZ21haWwuY29tIiwidXNlcm5hbWUiOiJwdWltZWsxMjMiLCJwYXNzd29yZCI6IiQyYiQxNSQ1cmxyemtiZjh6LlhhLnRBeFFJQlJ1Ukk1RkpTWkpzbUlza1pmQ21OdFJLcnBNb1RNWW1jRyIsImlhdCI6MTYyNTY1OTk3N30.FC24vgbBIju7NEKNDDY1_5cBxKq6uKISppRSsSMVBuo
+
+# {
+#   "description" : "Update Description dari Puimek Napasorn Wer"
+# }
+
+# DELETE http://localhost:8000/api/v1/todos/4 HTTP/1.1
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJwdWltZWtAZ21haWwuY29tIiwidXNlcm5hbWUiOiJwdWltZWsxMjMiLCJwYXNzd29yZCI6IiQyYiQxNSQ1cmxyemtiZjh6LlhhLnRBeFFJQlJ1Ukk1RkpTWkpzbUlza1pmQ21OdFJLcnBNb1RNWW1jRyIsImlhdCI6MTYyNTY1OTk3N30.FC24vgbBIju7NEKNDDY1_5cBxKq6uKISppRSsSMVBuo
