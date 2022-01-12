@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import IController from './ControllerInterface';
+import IController from '../interfaces/ControllerInterface';
 import TodoService from '../services/TodoService';
 import ResponseFormatter from '../utils/ResponseFormatter';
 

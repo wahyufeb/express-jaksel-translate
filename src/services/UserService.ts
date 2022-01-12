@@ -1,6 +1,7 @@
 import { Request } from "express";
-import { db } from "../db/models";
+import DictionaryModel from "../models/DictionaryModel";
 import AuthenticationUtils from "../utils/AuthenticationUtils";
+const db = require("../db/models");
 
 class UserService {
   credentials: {
