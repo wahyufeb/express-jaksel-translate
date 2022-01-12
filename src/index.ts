@@ -4,10 +4,12 @@ import compression from 'compression';
 import helmet from 'helmet';
 import cors from 'cors';
 import { config as dotenv } from 'dotenv';
+import { connectingToMongoDB } from "./config/connection"
 
 import UserRoutes from './routes/UserRoutes';
 import AuthRoutes from './routes/AuthRoutes';
 import TodoRoutes from './routes/TodoRoutes';
+import DictionaryRoutes from './routes/DictionaryRoutes';
 
 class App {
 	public app: Application;
@@ -17,6 +19,7 @@ class App {
 		this.plugins();
 		this.routes();
 		dotenv();
+		connectingToMongoDB()
 	}
 
 	protected plugins(): void {
@@ -31,11 +34,12 @@ class App {
 		this.app.use('/api/v1/users', UserRoutes);
 		this.app.use('/api/v1/auth', AuthRoutes);
 		this.app.use('/api/v1/todos', TodoRoutes);
+		this.app.use('/api/v1/dictionary', DictionaryRoutes);
 	}
 }
 
-const PORT: number = 8000;
+const PORT: string | undefined = process.env.PORT;
 const app = new App().app;
 app.listen(PORT, () => {
-	console.log('Server is running');
+	console.log('Server is running at ' + PORT);
 });
