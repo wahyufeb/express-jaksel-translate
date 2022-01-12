@@ -5,29 +5,27 @@ import {
 	CustomValidator,
 	ValidationChain,
 } from 'express-validator';
-const db = require('../db/models');
+import AdminModel from '../models/AdminModel';
 
 const isValidEmail: CustomValidator = (value) => {
 	if (value) {
-		return db.user
-			.findOne({ where: { email: value } })
-			.then((checkUser: any) => {
-				if (checkUser) {
+		return AdminModel.findOne({ email: value })
+			.then((admin) => {
+				if (admin) {
 					return Promise.reject('Email sudah digunakan');
 				}
-			});
+			})
 	}
 };
 
 const isValidUsername: CustomValidator = (value) => {
 	if (value) {
-		return db.user
-			.findOne({ where: { username: value } })
-			.then((checkUser: any) => {
-				if (checkUser) {
+		return AdminModel.findOne({ username: value })
+			.then((admin) => {
+				if (admin) {
 					return Promise.reject('Username sudah digunakan');
 				}
-			});
+			})
 	}
 };
 

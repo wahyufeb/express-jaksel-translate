@@ -11,6 +11,7 @@ class ResponseFormatter {
   static formatResponse = (result: IResponseFormatter) :Response =>  {
     const { response, code, message, data } = result;
     return response.status(code).json({
+      code,
       message,
       data,
     });
