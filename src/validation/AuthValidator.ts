@@ -51,8 +51,8 @@ export const registrationValidate = [
 		.withMessage('Username tidak boleh kosong')
 		.isString()
 		.withMessage('Tidak boleh mengandung angka')
-		.isLength({ min: 2, max: 10 })
-		.withMessage('Panjang nama minimal 2 karakter dan maksimal 10 karakter')
+		.isLength({ min: 4, max: 20 })
+		.withMessage('Panjang nama minimal 4 karakter dan maksimal 20 karakter')
 		.custom(isValidUsername),
 	check('password')
 		.not()
