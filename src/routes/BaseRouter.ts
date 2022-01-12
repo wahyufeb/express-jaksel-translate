@@ -1,5 +1,5 @@
 import { Router} from "express";
-import IRouter from "./RouteInterface";
+import IRouter from "../interfaces/RouteInterface";
 
 abstract class BaseRoutes implements IRouter{
   public router: Router;
