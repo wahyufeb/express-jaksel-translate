@@ -1,9 +1,15 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import ResponseFormatter from '../utils/ResponseFormatter';
 
 export const auth = (req: Request, res: Response, next: NextFunction): any => {
 	if (!req.headers.authorization) {
-		return res.status(401).json('Token tidak ada');
+		return ResponseFormatter.formatResponse({
+			response: res,
+			code: 401,
+			message: 'Token tidak ada',
+			data: null,
+		})
 	}
 
 	const secretKey: string = process.env.JWT_SECRET_KEY || 'secret';
