@@ -9,7 +9,7 @@ import DictionaryController from '../controllers/DictionaryController';
 
 class DictionaryRoutes extends BaseRoutes {
 	public routes(): void {
-		this.router.get('/:from/translating', auth, DictionaryController.translating);
+		this.router.get('/:from/translating', DictionaryController.translating);
 		this.router.get('/', auth, DictionaryController.index);
 		this.router.post('/create', auth, dictionaryValidate, DictionaryController.create);
 		this.router.get('/:id', auth, DictionaryController.show);
