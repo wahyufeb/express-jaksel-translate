@@ -18,10 +18,15 @@ class DictionaryService {
 		this.query = req.query
 	}
 
+	translatingRecomendation = async () => {
+		const searchKey = this.query.search as string;
+		const result: Array<IDictionaryModel> | null = await DictionaryModel.find({ [this.params.from]: { '$regex': '(\s+'+searchKey+'|^'+searchKey+')', '$options': 'i' } }).select(this.params.from).limit(5);
+		return result;
+	}
+
 	translating = async () => {
-		const searchKey = typeof this.query.search === 'string' ? this.query.search.toLowerCase() : '' as string;
-		console.log(searchKey);
-		const result: Array<IDictionaryModel> | null = await DictionaryModel.find({ [this.params.from]: { $regex: searchKey} })
+		const searchKey = this.query.search as string;
+		const result: IDictionaryModel | null = await DictionaryModel.where({ [this.params.from]: searchKey }).findOne();
 		return result;
 	}
 

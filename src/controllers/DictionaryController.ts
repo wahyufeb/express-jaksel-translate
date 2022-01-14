@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, response, Response } from "express";
 import IController from "../interfaces/ControllerInterface";
 import { IDictionaryModel } from "../interfaces/DictionaryModel/IDictionaryModel";
 import DictionaryService from "../services/DictionaryService";
@@ -8,9 +8,11 @@ class DictionaryController implements IController {
 	translating = async (req: Request, res: Response): Promise<Response> => {
 		try {
 			const service = new DictionaryService(req);
-			const result: Array<IDictionaryModel> = await service.translating();
+			const result: IDictionaryModel | null = await service.translating();
+			const resultRecomendation: Array<IDictionaryModel> = await service.translatingRecomendation();
+			console.log(result)
 
-			if(result.length === 0) {
+			if(result === null && resultRecomendation.length === 0) {
 				return ResponseFormatter.formatResponse({
 					response: res,
 					code: 404,
@@ -18,11 +20,20 @@ class DictionaryController implements IController {
 					data: null,
 				});	
 			}
+
+			const responseData: {result: IDictionaryModel | null, resultRecomendation: Array<IDictionaryModel> | null} = { result: null, resultRecomendation: null}
+			if(result !== null) {
+				responseData.resultRecomendation = null;
+			} else {
+				responseData.resultRecomendation = resultRecomendation;
+			}
+			responseData.result = result;
+
 			return ResponseFormatter.formatResponse({
-				response: res,
+				response: res,	
 				code: 200,
 				message: 'Founded result',
-				data: result,
+				data: responseData
 			});
 
 		} catch (error) {
