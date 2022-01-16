@@ -16,7 +16,7 @@ class DictionaryController implements IController {
 				return ResponseFormatter.formatResponse({
 					response: res,
 					code: 404,
-					message: 'Not Found',
+					message: 'Kata tidak ditemukan',
 					data: null,
 				});	
 			}
@@ -32,7 +32,7 @@ class DictionaryController implements IController {
 			return ResponseFormatter.formatResponse({
 				response: res,	
 				code: 200,
-				message: 'Founded result',
+				message: 'Kata berhasil ditemukan',
 				data: responseData
 			});
 
@@ -41,7 +41,7 @@ class DictionaryController implements IController {
 			return ResponseFormatter.formatResponse({
 				response: res,
 				code: 500,
-				message: 'Server Error',
+				message: 'Error pada server',
 				data: null,
 			});
 		}
@@ -55,7 +55,7 @@ class DictionaryController implements IController {
 			return ResponseFormatter.formatResponse({
 				response: res,
 				code: 200,
-				message: 'Dictionaries data',
+				message: 'Berhasil mengambil data',
 				data: dictionaries,
 			});
 
@@ -64,7 +64,7 @@ class DictionaryController implements IController {
 			return ResponseFormatter.formatResponse({
 				response: res,
 				code: 500,
-				message: 'Server Error',
+				message: 'Error pada server',
 				data: null,
 			});
 		}
@@ -78,7 +78,7 @@ class DictionaryController implements IController {
 			return ResponseFormatter.formatResponse({
 				response: res,
 				code: 201,
-				message: 'Dictionary created',
+				message: 'Kamus berhasil dibuat',
 				data: dictionary,
 			});
 
@@ -87,7 +87,7 @@ class DictionaryController implements IController {
 			return ResponseFormatter.formatResponse({
 				response: res,
 				code: 500,
-				message: 'Server Error',
+				message: 'Error pada server',
 				data: null,
 			});
 		}
@@ -102,7 +102,7 @@ class DictionaryController implements IController {
 				return ResponseFormatter.formatResponse({
 					response: res,
 					code: 404,
-					message: 'Dictionary not found',
+					message: 'Kamus tidak ditemukan',
 					data: null,
 				})
 			}
@@ -110,7 +110,7 @@ class DictionaryController implements IController {
 			return ResponseFormatter.formatResponse({
 				response: res,
 				code: 200,
-				message: 'Success get dictionary',
+				message: 'Berhasil ambil kamus',
 				data: dictionary,
 			})
 
@@ -119,7 +119,7 @@ class DictionaryController implements IController {
 			return ResponseFormatter.formatResponse({
 				response: res,
 				code: 500,
-				message: 'Server Error',
+				message: 'Error pada server',
 				data: null,
 			});
 		}
@@ -133,7 +133,7 @@ class DictionaryController implements IController {
 			return ResponseFormatter.formatResponse({
 				response: res,
 				code: 200,
-				message: 'Success updating dictionary',
+				message: 'Berhasil mengedit kamus',
 				data: updatingDictionary,
 			})
 
@@ -142,7 +142,7 @@ class DictionaryController implements IController {
 			return ResponseFormatter.formatResponse({
 				response: res,
 				code: 500,
-				message: 'Server Error',
+				message: 'Error pada server',
 				data: null,
 			});
 		}
@@ -156,7 +156,7 @@ class DictionaryController implements IController {
 			return ResponseFormatter.formatResponse({
 				response: res,
 				code: 200,
-				message: 'Success deleting dictionary',
+				message: 'Berhasil hapus kamus',
 				data: deletingDictionary,
 			})
 
@@ -165,7 +165,7 @@ class DictionaryController implements IController {
 			return ResponseFormatter.formatResponse({
 				response: res,
 				code: 500,
-				message: 'Server Error',
+				message: 'Error pada server',
 				data: null,
 			});
 		}

@@ -13,7 +13,7 @@ class AuthController {
       return ResponseFormatter.formatResponse({
         response: res,
         code: 201,
-        message: "Admin registration success",
+        message: "Admin berhasil didaftarkan",
         data,
       });
     } catch (error) {
@@ -21,7 +21,7 @@ class AuthController {
       return ResponseFormatter.formatResponse({
         response: res,
         code: 500,
-        message: "Server Error",
+        message: "Erorr pada server",
         data: null,
       });
     }
@@ -36,6 +36,8 @@ class AuthController {
         data,
       }: StandardResult<{ user: IAdminModel; token: string } | null> =
         await service.loginService();
+
+        console.error(success, data);
 
       if (!success) {
         return ResponseFormatter.formatResponse({
@@ -57,7 +59,7 @@ class AuthController {
       return ResponseFormatter.formatResponse({
         response: res,
         code: 500,
-        message: "Server Error",
+        message: "Errpr pada server",
         data: null,
       });
     }
@@ -65,11 +67,28 @@ class AuthController {
 
   profile = async (req: Request, res: Response): Promise<Response> => {
     try {
-      return res.json(req.app.locals.credentials);
+      const service = new AuthService(req);
+      const {success, message, data}: StandardResult<IAdminModel | null> = await service.profileService();
+
+      if (!success) {
+        return ResponseFormatter.formatResponse({
+          response: res,
+          code: 400,
+          message,
+          data: null,
+        });
+      }
+
+      return ResponseFormatter.formatResponse({
+        response: res,
+        code: 200,
+        message,
+        data: data,
+      });
     } catch (error) {
       console.log(error);
       return res.json({
-        mesasge: "Server error",
+        mesasge: "Error pada server",
         error,
       });
     }

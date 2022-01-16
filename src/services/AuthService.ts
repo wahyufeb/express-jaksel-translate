@@ -5,10 +5,14 @@ import AuthenticationUtils from "../utils/AuthenticationUtils";
 import { StandardResultData } from "../types/DefaultTypes";
 
 class AuthService {
+	credentials: {
+		id: number;
+	};
   body: Request["body"];
   params: Request["params"];
 
   constructor(req: Request) {
+		this.credentials = req.app.locals.credentials;
     this.body = req.body;
     this.params = req.params;
   }
@@ -44,14 +48,12 @@ class AuthService {
   loginService = async () => {
     const { email, password } = this.body;
 
-    const user = await AdminModel.findOne({
-      where: { email },
-    });
+    const user = await AdminModel.findOne({ email });
 
     if (!user) {
       return StandardResultData({
         success: false,
-        message: "Admin not found",
+        message: "Admin tidak ditemukan",
         data: null,
       });
     }
@@ -61,7 +63,7 @@ class AuthService {
     if (!comparingPassword) {
       return StandardResultData({
         success: false,
-        message: "Password is incorrect",
+        message: "Kesalahan password",
         data: null,
       });
     }
@@ -75,13 +77,34 @@ class AuthService {
 
     return StandardResultData<{ user: IAdminModel; token: string }>({
       success: true,
-      message: "Login Success",
+      message: "Berhasil login",
       data: {
         user,
         token,
       },
     })
   };
+
+  profileService = async () => {
+    const { id } = this.credentials;
+
+    const user = await AdminModel.findById(id).select("_id");
+    console.error("user", user)
+
+    if (!user) {
+      return StandardResultData({
+        success: false,
+        message: "Admin tidak ditemukan",
+        data: null,
+      });
+    }
+
+    return StandardResultData<IAdminModel>({
+      success: true,
+      message: "Berhasil mengambil profile",
+      data: user,
+    });
+  }
 }
 
 export default AuthService;
