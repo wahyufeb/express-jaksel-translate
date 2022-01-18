@@ -37,8 +37,8 @@ class DictionaryService {
 
 	save = async () => {
 		const dictionary: IDictionaryModel = await DictionaryModel.create({
-			jaksel: this.body.jaksel.toLowerCase(),
-			artinya: this.body.artinya.toLowerCase(),
+			jaksel: this.body.jaksel,
+			artinya: this.body.artinya,
 		});
 
 		return dictionary;
