@@ -2,7 +2,7 @@ import BaseRoutes from './BaseRouter';
 
 // Middleware & Validations
 import { auth } from '../middlewares/AuthMiddleware';
-import { dictionaryValidate } from '../validation/DictionaryValidator';
+import { dictionaryValidate, updateDictionaryValidate } from '../validation/DictionaryValidator';
 
 // Controllers
 import DictionaryController from '../controllers/DictionaryController';
@@ -13,7 +13,7 @@ class DictionaryRoutes extends BaseRoutes {
 		this.router.get('/', auth, DictionaryController.index);
 		this.router.post('/create', auth, dictionaryValidate, DictionaryController.create);
 		this.router.get('/:id', auth, DictionaryController.show);
-		this.router.put('/:id', auth, dictionaryValidate, DictionaryController.update);
+		this.router.put('/:id', auth, updateDictionaryValidate, DictionaryController.update);
 		this.router.delete('/:id', auth, DictionaryController.delete);
 	}
 }
