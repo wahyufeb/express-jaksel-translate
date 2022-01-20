@@ -1,6 +1,7 @@
 import { Request, response, Response } from "express";
 import IController from "../interfaces/ControllerInterface";
 import { IDictionaryModel } from "../interfaces/DictionaryModel/IDictionaryModel";
+import { IResponseStatus } from "../interfaces/ResponseStatus/IResponseStatus";
 import DictionaryService from "../services/DictionaryService";
 import ResponseFormatter from "../utils/ResponseFormatter";
 
@@ -128,14 +129,33 @@ class DictionaryController implements IController {
 	update = async (req: Request, res: Response): Promise<Response> => {
 		try {
 			const service = new DictionaryService(req);
-			const updatingDictionary = await service.update();
+			const {success, message} = await service.handleDuplicate();
+			if(!success) {
+				return ResponseFormatter.formatResponse({
+					response: res,
+					code: 400,
+					message,
+					data: null,
+				})
+			}
 
-			return ResponseFormatter.formatResponse({
-				response: res,
-				code: 200,
-				message: 'Berhasil mengedit kamus',
-				data: updatingDictionary,
-			})
+			const updatingDictionary = await service.update();
+			if(updatingDictionary.matchedCount !== 1){
+				return ResponseFormatter.formatResponse({
+					response: res,
+					code: 400,
+					message: 'Gagal mengedit kamus',
+					data: null,
+				})
+			} else {
+				const dictionaryId = await service.getOne();
+				return ResponseFormatter.formatResponse({
+					response: res,
+					code: 200,
+					message: 'Berhasil mengedit kamus',
+					data: dictionaryId,
+				})
+			}
 
 		} catch (error) {
 			console.log(error);
