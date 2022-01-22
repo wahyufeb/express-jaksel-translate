@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tsc": "cross-env NODE_ENV=production tsc",
+    "tsc-dev": "cross-env NODE_ENV=development tsc",
+    "tsc-prod": "cross-env NODE_ENV=production tsc",
     "ts": "tsc -w",
     "dev": "cross-env NODE_ENV=development nodemon ./build/index.js",
     "prod": "cross-env NODE_ENV=production nodemon ./build/index.js"
