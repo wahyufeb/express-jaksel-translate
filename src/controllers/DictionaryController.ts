@@ -9,10 +9,9 @@ class DictionaryController implements IController {
 	translating = async (req: Request, res: Response): Promise<Response> => {
 		try {
 			const service = new DictionaryService(req);
-			const result: IDictionaryModel | null = await service.translating();
+			const result: string = await service.translating();
 			const resultRecomendation: Array<IDictionaryModel> = await service.translatingRecomendation();
-			console.log(result)
-
+			
 			if(result === null && resultRecomendation.length === 0) {
 				return ResponseFormatter.formatResponse({
 					response: res,
@@ -22,12 +21,12 @@ class DictionaryController implements IController {
 				});	
 			}
 
-			const responseData: {result: IDictionaryModel | null, resultRecomendation: Array<IDictionaryModel> | null} = { result: null, resultRecomendation: null}
-			if(result !== null) {
-				responseData.resultRecomendation = null;
-			} else {
-				responseData.resultRecomendation = resultRecomendation;
-			}
+			const responseData: {result: string | null, resultRecomendation: Array<IDictionaryModel> | null} = { result: null, resultRecomendation: null}
+			// if(result !== null) {
+			// 	responseData.resultRecomendation = null;
+			// } else {
+			// }
+			responseData.resultRecomendation = resultRecomendation;
 			responseData.result = result;
 
 			return ResponseFormatter.formatResponse({

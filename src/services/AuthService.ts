@@ -87,9 +87,7 @@ class AuthService {
 
   profileService = async () => {
     const { id } = this.credentials;
-
     const user = await AdminModel.findById(id).select("_id");
-    console.error("user", user)
 
     if (!user) {
       return StandardResultData({

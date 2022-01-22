@@ -36,9 +36,7 @@ class AuthController {
         data,
       }: StandardResult<{ user: IAdminModel; token: string } | null> =
         await service.loginService();
-
-        console.error(success, data);
-
+        
       if (!success) {
         return ResponseFormatter.formatResponse({
           response: res,

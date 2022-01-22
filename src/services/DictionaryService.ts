@@ -1,7 +1,9 @@
+import Url from "url";
 import { Request } from "express";
 import DictionaryModel from "../models/DictionaryModel";
 import { IDictionaryModel } from "../interfaces/DictionaryModel/IDictionaryModel";
 import { IResponseStatus } from "../interfaces/ResponseStatus/IResponseStatus";
+import { parseParamsToArray } from "../utils/ParseURL";
 
 class DictionaryService {
   credentials: {
@@ -21,23 +23,40 @@ class DictionaryService {
 
   translatingRecomendation = async () => {
     const searchKey = this.query.search as string;
-    const result: Array<IDictionaryModel> | null = await DictionaryModel.find({
-      [this.params.from]: {
-        $regex: "(s+" + searchKey + "|^" + searchKey + ")",
-        $options: "i",
-      },
-    })
+    const params = parseParamsToArray(searchKey);
+    const lastestParams = params[params.length - 1];
+    
+    if(lastestParams !== "") {
+      const result: Array<IDictionaryModel> | null = await DictionaryModel.find({
+        [this.params.from]: {
+          $regex: "(s+" + lastestParams + "|^" + lastestParams + ")",
+          $options: "i",
+        },
+      })
       .select(this.params.from)
       .limit(5);
-    return result;
+      return result;
+    } else {
+      return []
+    }
   };
 
   translating = async () => {
     const searchKey = this.query.search as string;
-    const result: IDictionaryModel | null = await DictionaryModel.where({
-      [this.params.from]: searchKey,
-    }).findOne();
-    return result;
+    const params = parseParamsToArray(searchKey);
+
+    const translatingPerWord = params.map(async (itemParams) => {
+      const translatingResult: IDictionaryModel | null = await DictionaryModel.where({
+        [this.params.from]: itemParams,
+      }).findOne();
+      if(translatingResult) {
+        return this.params.from === 'jaksel' ? translatingResult.artinya : translatingResult.jaksel
+      } else {
+        return itemParams
+      }
+    })
+    const resultData = await Promise.all(translatingPerWord)
+    return resultData.join(" ");
   };
 
   getAll = async () => {
