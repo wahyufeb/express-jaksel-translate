@@ -31,9 +31,9 @@ class App {
 	}
 
 	protected routes(): void {
-		// this.app.use('/api/v1', (req: Request, res: Response) => {
-		// 	return res.send("API JAKSEL TRANSLATE : " + new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
-		// });
+		this.app.use('/', (req: Request, res: Response) => {
+			return res.send("API JAKSEL TRANSLATE : " + new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
+		});
 		this.app.use('/api/v1/auth', AuthRoutes);
 		this.app.use('/api/v1/dictionary', DictionaryRoutes);
 		this.app.use('/api/v1/users', UserRoutes);
