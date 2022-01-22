@@ -28,7 +28,7 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.PRIVTE_KEY }}
+          key: ${{ secrets.PRIVATE_KEY }}
           port: 22
           script: 
             cd ~/apps/api/express-jaksel-translate
