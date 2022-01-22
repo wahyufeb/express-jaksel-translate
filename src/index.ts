@@ -31,7 +31,7 @@ class App {
 	}
 
 	protected routes(): void {
-		this.app.use('/', (req: Request, res: Response) => {
+		this.app.get('/', (req: Request, res: Response) => {
 			return res.send("API JAKSEL TRANSLATE : " + new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
 		});
 		this.app.use('/api/v1/auth', AuthRoutes);
