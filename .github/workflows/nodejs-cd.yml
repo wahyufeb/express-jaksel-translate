@@ -36,5 +36,5 @@ jobs:
             git status
             npm install --only=prod
             rm -rf ./build
-            npm run tsc prod
+            npm run tsc-prod
             pm2 restart JakselTranslate
