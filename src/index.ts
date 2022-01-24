@@ -13,12 +13,16 @@ import DictionaryRoutes from './routes/DictionaryRoutes';
 
 class App {
 	public app: Application;
+	public PORT: string
 
 	constructor() {
 		this.app = express();
 		this.plugins();
 		this.routes();
-		dotenv();
+		dotenv({
+			path: `.env.${process.env.NODE_ENV}`
+		});
+		this.PORT = process.env.PORT || '3001';
 		connectingToMongoDB()
 	}
 
@@ -41,8 +45,8 @@ class App {
 	}
 }
 
-const PORT: string | undefined = process.env.PORT;
-const app = new App().app;
+const application = new App()
+const { app, PORT } = application
 app.listen(PORT, () => {
 	console.log('Server is running at ' + PORT);
 });
