@@ -33,6 +33,14 @@ jobs:
             npm install --only=prod
             git status
             npm run tsc-prod
-            pm2 restart ApiJakselTranslate --update-env
-            pm2 logs --raw
+      
+      - name: Pm2 Restart
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd ~/apps/api/express-jaksel-translate
             pm2 restart ApiJakselTranslate --update-env
