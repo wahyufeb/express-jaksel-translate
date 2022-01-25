@@ -35,6 +35,5 @@ jobs:
             git pull origin master
             git status
             npm install --only=prod
-            rm -rf ./build
             npm run tsc-prod
             pm2 restart ApiJakselTranslate --update-env
