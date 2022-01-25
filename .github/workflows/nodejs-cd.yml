@@ -37,4 +37,4 @@ jobs:
             npm install --only=prod
             rm -rf ./build
             npm run tsc-prod
-            pm2 restart JakselTranslate
+            pm2 restart JakselTranslate --update-env
