@@ -33,5 +33,4 @@ jobs:
             npm install --only=prod
             npm run tsc-prod
       - name: Restart pm2
-        with:
-          script: pm2 restart ApiJakselTranslate --update-env
+        run: pm2 restart ApiJakselTranslate --update-env
