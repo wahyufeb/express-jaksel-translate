@@ -18,7 +18,7 @@ class App {
 		this.plugins();
 		this.routes();
 		dotenv({
-			path: `.env.${process.env.NODE_ENV}`
+			path: `.env.${process.env.NODE_ENV === undefined ? 'production' : 'development'}`
 		});
 		this.PORT = process.env.PORT || '3001';
 		connectingToMongoDB()
