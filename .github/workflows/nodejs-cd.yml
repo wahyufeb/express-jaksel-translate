@@ -33,7 +33,4 @@ jobs:
             npm install --only=prod
             git status
             npm run tsc-prod
-      - name: Install PM2
-        run: npm i pm2
-      - name: Deploy
-        run: pm2 restart ApiJakselTranslate --update-env
+            pm2 restart ApiJakselTranslate --update-env
