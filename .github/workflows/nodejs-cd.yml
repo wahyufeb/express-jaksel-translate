@@ -31,7 +31,6 @@ jobs:
             cd ~/apps/api/express-jaksel-translate
             git pull origin master
             npm install --only=prod
-            npm run tsc-prod
-            pm2 restart ApiJakselTranslate
+            npm run tsc-pro
             git status
             pm2 restart ApiJakselTranslate --update-env
