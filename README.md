@@ -7,21 +7,28 @@ Build Rest API with Express Typescript
 * ✅ cors    
 * ✅ dotenv
 * ✅ express
+* ✅ typescript
 * ✅ express-validator
 * ✅ helmet    
 * ✅ jsonwebtoken
-* ✅ mysql2    
-* ✅ sequelize    
-* ✅ sequelize-cli
+* ✅ mongodb    
+* ✅ mongoose
 
 ```bash
 # Install Dependencies
 $ npm install
+$ yarn 
 
 # Compiling Typescript
 $ npm run ts
+$ yarn ts
 
 # Starting project in development mode
 $ npm run dev
+$ yarn dev
+
+# Starting project in production mode
+$ npm run prod
+$ yarn prod
 
 ```
