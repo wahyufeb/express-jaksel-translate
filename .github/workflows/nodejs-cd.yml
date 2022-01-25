@@ -30,7 +30,8 @@ jobs:
           script: |
             cd ~/apps/api/express-jaksel-translate
             git pull origin master
-            nvm use 16.9.1
             npm install --only=prod
             npm run tsc-prod
-            pm2 restart ApiJakselTranslate --update-env
+      - name: Restart pm2
+        with:
+          script: pm2 restart ApiJakselTranslate --update-env
