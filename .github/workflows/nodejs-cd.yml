@@ -34,3 +34,5 @@ jobs:
             git status
             npm run tsc-prod
             pm2 restart ApiJakselTranslate --update-env
+            pm2 logs --raw
+            pm2 restart ApiJakselTranslate --update-env
