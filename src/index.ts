@@ -6,7 +6,6 @@ import cors from 'cors';
 import { config as dotenv } from 'dotenv';
 import { connectingToMongoDB } from "./config/connection"
 
-import UserRoutes from './routes/UserRoutes';
 import AuthRoutes from './routes/AuthRoutes';
 import DictionaryRoutes from './routes/DictionaryRoutes';
 
@@ -39,7 +38,6 @@ class App {
 		});
 		this.app.use('/api/v1/auth', AuthRoutes);
 		this.app.use('/api/v1/dictionary', DictionaryRoutes);
-		this.app.use('/api/v1/users', UserRoutes);
 	}
 }
 
