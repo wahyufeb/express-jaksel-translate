@@ -32,5 +32,6 @@ jobs:
             git pull origin master
             npm install --only=prod
             npm run tsc-prod
-      - name: Restart pm2
-        run: pm2 restart ApiJakselTranslate --update-env
+            pm2 restart ApiJakselTranslate
+            git status
+            pm2 restart ApiJakselTranslate --update-env
