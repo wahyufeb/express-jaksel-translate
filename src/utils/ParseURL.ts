@@ -1,5 +1,4 @@
 export const parseParamsToArray = (params: string) => {
-  const splitParams :string = params.split("+")[0];
-  const arrParams: string[] = splitParams.split(" ");
+  const arrParams: string[] = params.split(" ");
   return arrParams;
 }
