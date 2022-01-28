@@ -43,7 +43,7 @@ class DictionaryService {
 
   translating = async () => {
     const searchKey = this.query.search as string;
-    const params = [searchKey];
+    const params = parseParamsToArray(searchKey);
 
     const translatingPerWord = params.map(async (itemParams) => {
       const translatingResult: IDictionaryModel | null = await DictionaryModel.where({
